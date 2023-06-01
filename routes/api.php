@@ -18,6 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//passport for USER:AUTH.
 Route::controller(\App\Http\Controllers\API\UserController::class)->group(function () {
     Route::post('login', 'loginUser');
     Route::post('register', 'registerUser');
@@ -27,3 +28,6 @@ Route::controller(\App\Http\Controllers\API\UserController::class)->group(functi
     Route::get('user', 'getUserDetail');
     Route::get('logout', 'userLogout');
 })->middleware('auth:api');
+
+//Post request to CRUD.
+Route::resource('posts', \App\Http\Controllers\API\PostController::class);
